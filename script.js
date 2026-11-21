@@ -43,3 +43,30 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: "-35% 0px -55% 0px" });
 
 sections.forEach((section) => observer.observe(section));
+let indeksSlide = 0;
+const daftarSlide = document.querySelectorAll('.hero-slider .slide');
+const daftarDot = document.querySelectorAll('.hero-slider .dot');
+
+function tampilkanSlide(n) {
+  if (!daftarSlide.length) return;
+  indeksSlide = (n + daftarSlide.length) % daftarSlide.length;
+
+  daftarSlide.forEach((slide, i) => {
+    slide.classList.toggle('active', i === indeksSlide);
+  });
+  daftarDot.forEach((dot, i) => {
+    dot.classList.toggle('active', i === indeksSlide);
+  });
+}
+
+function gantiSlide(arah) {
+  tampilkanSlide(indeksSlide + arah);
+}
+
+function pilihSlide(indeks) {
+  tampilkanSlide(indeks);
+}
+
+if (daftarSlide.length > 1) {
+  setInterval(() => gantiSlide(1), 4000);
+}
