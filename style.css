@@ -1,275 +1,546 @@
- :root {
-  --navy:#142b4b; --navy-2:#1c3a61; --maroon:#1c1c56; --maroon-dark:#000000;
-  --gold:#e9c47a; --cream:#f6f4f0; --ink:#1d2b3d; --muted:#697586; --white:#fff;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;font-family:"DM Sans",Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
-a{color:inherit}
-.container{width:min(1160px,calc(100% - 48px));margin:0 auto}
-.topbar{background:#000000;color:#007bff;font-size:11px;letter-spacing:.07em}
-.topbar-inner{display:flex;justify-content:space-between;padding:8px 0}
-.topbar-note{color:#ffffff}
-.site-header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 5px 24px #12243b0c}
-.nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:250px}
-.brand-logo{width:48px;height:48px;object-fit:contain}
-.logo-fallback{display:none;width:48px;height:48px;border-radius:50%;place-items:center;background:var(--navy);color:var(--gold);font-family:Manrope,sans-serif;font-weight:800;font-size:13px;border:2px solid var(--gold)}
-.brand-copy{display:flex;flex-direction:column;line-height:1.3}
-.brand-copy strong{font:800 13px Manrope,sans-serif;color:var(--navy);letter-spacing:.025em}
-.brand-copy small{font-size:10px;color:#7b8490;margin-top:4px}
-.main-nav{display:flex;align-items:center;gap:25px}
-.nav-link{text-decoration:none;font-size:12px;font-weight:700;color:#536071;transition:.2s}
-.nav-link:hover,.nav-link.active{color:var(--maroon)}
-.nav-cta{background:var(--maroon);color:#fff;text-decoration:none;padding:12px 17px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.02em}
-.nav-cta span{color:var(--gold);margin-left:7px}
-.menu-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer}
-.menu-toggle span{display:block;width:23px;height:2px;background:var(--navy);margin:5px}
-.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#142b4b 0%,#1b3659 57%,#ff005d 100%);color:#fff;padding:92px 0 85px}
-.hero:after{content:"";position:absolute;width:550px;height:550px;border:1px solid #ffffff12;border-radius:50%;right:-160px;top:-180px;box-shadow:0 0 0 55px #ffffff08,0 0 0 110px #ffffff05}
-.hero-pattern{position:absolute;inset:0;opacity:.15;background-image:linear-gradient(30deg,transparent 49.5%,#fff 50%,transparent 50.5%);background-size:70px 70px;mask-image:linear-gradient(90deg,transparent,#000)}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:70px}
-.eyebrow{display:flex;align-items:center;gap:11px;color:#e8c77f;font-size:10px;font-weight:700;letter-spacing:.18em}
-.eyebrow-line{display:inline-block;width:28px;height:1px;background:currentColor}
-.hero h1,.section h2,.admission h2,.contact-section h2{font:800 clamp(38px,5vw,61px)/1.12 Manrope,sans-serif;letter-spacing:-.045em;margin:23px 0}
-h1 em,h2 em{font-style:normal;color:var(--gold)}
-.hero-desc{max-width:560px;color:#e6d4d4;font-size:15px;line-height:1.9}
-.hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
-.button{display:inline-flex;align-items:center;gap:20px;padding:14px 20px;border-radius:3px;text-decoration:none;font-size:12px;font-weight:700;transition:transform .2s,background .2s}
-.button:hover{transform:translateY(-2px)}
-.button-gold{background:var(--gold);color:#26354a}
-.button-outline{border:1px solid #ffffff70;color:#fff}
-.hero-caption{display:flex;align-items:center;gap:10px;margin-top:44px;color:#b9c5d3;font-size:10px;letter-spacing:.1em}
-.caption-mark{color:var(--gold);font-size:19px}
-.hero-visual{position:relative;padding:20px 15px 30px 35px}
-.visual-frame{height:390px;position:relative;border:1px solid #ffffff65;background:linear-gradient(145deg,#ffffff10,#ffffff03);display:flex;flex-direction:column;justify-content:space-between;padding:22px;overflow:hidden}
-.visual-frame:before,.visual-frame:after{content:"";position:absolute;border:1px solid #ffffff24;border-radius:50%;width:310px;height:310px;left:50%;top:50%;transform:translate(-50%,-50%)}
-.visual-frame:after{width:235px;height:235px}
-.visual-topline,.visual-bottom{display:flex;justify-content:space-between;color:#d5dce5;font-size:9px;letter-spacing:.16em;position:relative;z-index:2}
-.visual-monogram{position:absolute;inset:0;display:grid;place-items:center;color:#ffffff13;font:800 170px Manrope,sans-serif;letter-spacing:-.1em}
-.visual-circle{color:var(--gold);font-size:18px}
-.floating-note{position:absolute;right:-8px;bottom:0;background:#fff;color:var(--navy);padding:16px 20px;display:flex;gap:12px;align-items:center;box-shadow:0 14px 35px #07182b30}
-.note-icon{font-size:25px;color:var(--maroon)}
-.floating-note span:last-child{display:flex;flex-direction:column}
-.floating-note strong{font:700 11px Manrope}
-.floating-note small{font-size:10px;color:#788393}
-.hero-bottom-line{position:absolute;bottom:0;left:0;width:42%;height:4px;background:var(--gold)}
-.quick-info{background:#fff;position:relative;z-index:3;box-shadow:0 12px 30px #172b450b}
-.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.quick-item{display:flex;align-items:center;gap:15px;padding:25px 22px;text-decoration:none;border-right:1px solid #edf0f3}
-.quick-item:first-child{border-left:1px solid #edf0f3}
-.quick-icon{font:800 17px Manrope;color:var(--maroon)}
-.quick-item span:nth-child(2){display:flex;flex-direction:column}
-.quick-item strong{font:700 12px Manrope;color:var(--navy)}
-.quick-item small{font-size:10px;color:#8993a0}
-.quick-item b{margin-left:auto;color:var(--maroon)}
-.section{padding:100px 0}
-.section-light{background:#fff}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
-.eyebrow-dark{color:var(--maroon)}
-.section h2,.admission h2,.contact-section h2{font-size:clamp(32px,4vw,47px);color:var(--navy)}
-.section h2 em,.contact-section h2 em{color:var(--maroon)}
-.lead{font-size:15px;line-height:1.9;color:var(--muted);max-width:490px}
-.text-link{display:inline-flex;gap:17px;align-items:center;margin-top:20px;text-decoration:none;color:var(--maroon);font-size:12px;font-weight:700}
-.profile-panel{min-height:380px;padding:27px;background:linear-gradient(145deg,#142b4b,#233f63 68%,#742b45);color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.profile-panel:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff24;border-radius:50%;right:-100px;top:50px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06}
-.profile-panel-top,.profile-panel-bottom{position:relative;z-index:1}
-.profile-panel-top{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.15em;color:#d5dce5}
-.panel-star{color:var(--gold);font-size:23px}
-.profile-emblem{text-align:center;position:relative;z-index:1;color:#ffffff18;font:800 82px/.95 Manrope,sans-serif;letter-spacing:-.08em}
-.profile-emblem small{font-size:12px;letter-spacing:.25em;color:#e5c783}
-.profile-panel-bottom{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid #ffffff3b;padding-top:20px}
-.profile-panel-bottom div{display:flex;flex-direction:column;gap:6px}
-.profile-panel-bottom small{font-size:9px;color:#d3c18e;letter-spacing:.14em}
-.profile-panel-bottom strong{font:600 11px Manrope}
-.values-section{background:var(--cream)}
-.center-heading{text-align:center;max-width:650px;margin:0 auto 48px}
-.center-heading .eyebrow{justify-content:center}
-.center-heading h2{margin:16px 0}
-.center-heading p,.section-title-row>p{color:var(--muted);font-size:13px;line-height:1.8}
-.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.value-card{background:#fff;padding:29px;min-height:235px;position:relative;border:1px solid #ece9e4}
-.value-card-featured{background:var(--navy);color:#fff}
-.value-number{font:700 10px Manrope;color:#9aa3ad;letter-spacing:.1em}
-.value-card-featured .value-number{color:#c3cbd4}
-.value-symbol{font-size:30px;color:var(--maroon);margin:20px 0 8px}
-.value-card-featured .value-symbol{color:var(--gold)}
-.value-card h3{font:700 18px Manrope;margin:5px 0 9px;color:var(--navy)}
-.value-card-featured h3{color:#fff}
-.value-card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
-.value-card-featured p{color:#cbd4df}
-.section-title-row{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:38px}
-.section-title-row h2{margin:14px 0 0}
-.section-title-row>p{max-width:300px;margin:0 0 7px}
-.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.program-card{border:1px solid #e9edf1;padding:27px;min-height:285px;display:flex;flex-direction:column;align-items:flex-start;transition:.2s}
-.program-card:hover{border-color:#c7a7b3;transform:translateY(-4px);box-shadow:0 15px 35px #152d4a0b}
-.program-index{font-size:9px;letter-spacing:.13em;color:#8a94a1;font-weight:700}
-.program-icon{font-size:28px;color:var(--maroon);margin:22px 0 10px}
-.program-card h3{font:700 17px Manrope;color:var(--navy);margin:0 0 8px}
-.program-card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 15px}
-.program-note{font-size:10px;color:var(--maroon);font-weight:700;margin-top:auto}
-.program-card .text-link{margin-top:auto}
-.data-reminder{font-size:11px;color:#8a6472;background:#faf5f6;padding:12px 15px;margin-top:22px;border-left:3px solid var(--maroon)}
-.admission{background:linear-gradient(110deg,#142b4b,#1c3a61 60%,#65263f);color:#fff;padding:75px 0}
-.admission-inner{display:flex;justify-content:space-between;align-items:center;gap:50px}
-.admission h2{color:#fff;margin:18px 0}
-.admission p{color:#cbd5e0;font-size:13px;max-width:590px;line-height:1.8}
-.admission-action{min-width:230px;display:flex;flex-direction:column;gap:13px}
-.admission-action small{font-size:10px;color:#c3cbd4;line-height:1.6}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.news-card{border:1px solid #edf0f3;background:#fff}
-.news-art{height:165px;display:grid;place-items:center;position:relative;overflow:hidden}
-.news-art:before,.news-art:after{content:"";position:absolute;border:1px solid #ffffff45;border-radius:50%;width:180px;height:180px}
-.news-art:after{width:130px;height:130px}
-.news-art span{position:relative;z-index:1;font:800 30px Manrope;color:#ffffffc9;letter-spacing:.1em}
-.news-art-one{background:linear-gradient(135deg,#18395f,#702b46)}
-.news-art-two{background:linear-gradient(135deg,#6f2a44,#a66c64)}
-.news-art-three{background:linear-gradient(135deg,#263d5a,#172b48)}
-.news-body{padding:22px}
-.news-body small{font-size:9px;letter-spacing:.13em;color:var(--maroon);font-weight:700}
-.news-body h3{font:700 15px/1.5 Manrope;color:var(--navy);margin:9px 0}
-.news-body p{font-size:11px;color:var(--muted);line-height:1.8;margin:0}
-.contact-section{background:#f1eee9;padding:85px 0}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
-.contact-section h2{margin:18px 0}
-.contact-section p{font-size:13px;color:var(--muted);max-width:440px;line-height:1.9}
-.contact-details{border-top:1px solid #d9d5cf}
-.contact-row{padding:17px 0;border-bottom:1px solid #d9d5cf;display:flex;flex-direction:column;gap:5px}
-.contact-row small{font-size:9px;letter-spacing:.14em;color:var(--maroon);font-weight:700}
-.contact-row strong{font:600 12px Manrope;color:var(--navy)}
-.site-footer{background:#0e2039;color:#fff;padding:38px 0 18px}
-.footer-main{display:flex;justify-content:space-between;gap:25px;padding-bottom:28px}
-.footer-brand strong{font:800 14px Manrope;letter-spacing:.04em}
-.footer-brand p{font-size:11px;color:#aeb9c7;margin:5px 0}
-.footer-links{display:flex;gap:22px;align-items:center}
-.footer-links a{font-size:11px;text-decoration:none;color:#c5ced8}
-.footer-bottom{border-top:1px solid #ffffff20;padding-top:16px;display:flex;justify-content:space-between;color:#8f9eaf;font-size:10px}
-.back-to-top{position:fixed;right:22px;bottom:22px;width:40px;height:40px;border:0;border-radius:50%;background:var(--gold);color:var(--navy);font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:.2s;z-index:40}
-.back-to-top.visible{opacity:1;pointer-events:auto}
-@media(max-width:900px){
- .main-nav{gap:14px}.nav-link{font-size:11px}.hero-grid{gap:35px}.two-col,.contact-grid{gap:45px}
-}
-@media(max-width:720px){
- .container{width:min(100% - 34px,560px)}
- .topbar-note{display:none}.nav-wrap{min-height:72px}.brand{min-width:0}.brand-copy strong{font-size:11px}
- .menu-toggle{display:block;margin-left:auto}
- .main-nav{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;padding:18px 25px 23px;box-shadow:0 15px 20px #10233a16;align-items:stretch;gap:0;flex-direction:column}
- .main-nav.open{display:flex}.nav-link{padding:12px 0;border-bottom:1px solid #eef0f3;font-size:12px}.nav-cta{margin-top:13px;text-align:center}
- .hero{padding:65px 0 65px}.hero-grid{grid-template-columns:1fr;gap:35px}.hero h1{font-size:42px}.hero-visual{max-width:460px;width:100%;margin:0 auto;padding-left:15px}.visual-frame{height:290px}.visual-monogram{font-size:125px}
- .quick-grid{grid-template-columns:1fr}.quick-item{border-left:1px solid #edf0f3;border-bottom:1px solid #edf0f3;padding:17px 10px}
- .section{padding:70px 0}.two-col,.contact-grid{grid-template-columns:1fr;gap:35px}.profile-panel{min-height:310px}
- .value-grid,.program-grid,.news-grid{grid-template-columns:1fr}.value-card{min-height:190px}
- .section-title-row{display:block}.section-title-row>p{margin-top:14px}
- .admission-inner{display:block}.admission-action{margin-top:25px}.admission h2{font-size:35px}
- .footer-main,.footer-bottom{flex-direction:column}.footer-links{flex-wrap:wrap}
-}
-/* TOMBOL WHATSAPP STIT GLOBAL NUSANTARA */
-
-.whatsapp-float {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    background-color: #25D366;
-    color: #FFFFFF;
-
-    padding: 13px 21px;
-    border-radius: 50px;
-
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.20);
-    transition: all 0.3s ease;
+/* Keterangan: Variabel warna dan tema global website. Ubah nilai di sini untuk mengganti warna utama secara konsisten. */
+:root {
+  --navy: #142b4b;
+  --navy-2: #1c3a61;
+  --maroon: #1c1c56;
+  --maroon-dark: #000000;
+  --gold: #e9c47a;
+  --cream: #f6f4f0;
+  --ink: #1d2b3d;
+  --muted: #697586;
+  --white: #ffffff;
 }
 
-.whatsapp-float svg {
-    width: 25px;
-    height: 25px;
-    flex-shrink: 0;
+/* Keterangan: Aturan dasar untuk semua elemen agar ukuran padding dan border dihitung dengan konsisten. */
+* {
+  box-sizing: border-box;
 }
 
-.whatsapp-float:hover {
-    background-color: #128C7E;
-    color: #FFFFFF;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+/* Keterangan: Pengaturan perilaku halaman HTML, termasuk gulir halus dan jarak saat menuju bagian tertentu. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-/* Tampilan HP */
-@media (max-width: 600px) {
-    .whatsapp-float {
-        right: 15px;
-        bottom: 15px;
-        padding: 12px 17px;
-        font-size: 13px;
-    }
-
-    .whatsapp-float svg {
-        width: 23px;
-        height: 23px;
-    }
-}
-/* TOMBOL PMB STIT GLOBAL NUSANTARA */
-
-.btn-pmb {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    background: #712e39;
-    color: #FFFFFF;
-
-    padding: 10px 15px;
-    border-radius: 8px;
-
-    font-size: 10px;
-    font-weight: bold;
-    text-decoration: none;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
-
-    transition: all 0.3s ease;
+/* Keterangan: Tampilan dasar seluruh halaman: margin, jenis huruf, warna teks, latar belakang, dan jarak baris. */
+body {
+  margin: 0;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.65;
 }
 
-.btn-pmb:hover {
-    background: #0B3B70;
-    color: #FFFFFF;
-    transform: translateY(-3px);
+/* Keterangan: Warna dasar seluruh tautan sebelum diberi gaya khusus. */
+a {
+  color: inherit;
 }
 
-@media (max-width: 600px) {
-    .btn-pmb {
-        padding: 13px 18px;
-        font-size: 13px;
-    }
-}
-.hero-slider {
-  position: relative;
-  width: 100%;
-  max-width: 460px;
-  aspect-ratio: 4 / 3;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+/* Keterangan: Menyesuaikan lebar pembungkus konten agar pas pada layar ponsel. */
+.container {
+  width: min(1160px, calc(100% - 48px));
   margin: 0 auto;
 }
 
+/* TOPBAR */
+/* Keterangan: Bilah informasi paling atas website. */
+.topbar {
+  background: #000000;
+  color: #007bff;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+}
+
+/* Keterangan: Mengatur susunan isi topbar agar berada di sisi kiri dan kanan. */
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+/* Keterangan: Menyembunyikan teks tambahan topbar agar tampilan ponsel lebih ringkas. */
+.topbar-note {
+  color: var(--white);
+}
+
+/* HEADER & NAVIGASI */
+/* Keterangan: Header utama dan navigasi; dibuat tetap terlihat saat halaman digulir. */
+.site-header {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 5px 24px #12243b0c;
+}
+
+/* Keterangan: Menyesuaikan tinggi area header pada layar ponsel. */
+.nav-wrap {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Keterangan: Mengizinkan area logo dan nama kampus menggunakan lebar yang tersedia. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 250px;
+}
+
+/* Keterangan: Ukuran dan posisi gambar logo kampus. */
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* Keterangan: Logo pengganti berbentuk lingkaran jika gambar logo utama tidak tersedia. */
+.logo-fallback {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  place-items: center;
+  background: var(--navy);
+  color: var(--gold);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  border: 2px solid var(--gold);
+}
+
+/* Keterangan: Susunan teks nama kampus dan keterangan di samping logo. */
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+/* Keterangan: Mengecilkan nama kampus agar muat pada header ponsel. */
+.brand-copy strong {
+  font: 800 13px "Manrope", sans-serif;
+  color: var(--navy);
+  letter-spacing: 0.025em;
+}
+
+/* Keterangan: Gaya tulisan kecil atau keterangan tambahan identitas kampus. */
+.brand-copy small {
+  font-size: 10px;
+  color: #7b8490;
+  margin-top: 4px;
+}
+
+/* Keterangan: Mengubah navigasi menjadi menu dropdown vertikal pada ponsel. */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Keterangan: Memberi ruang sentuh dan garis pemisah pada tautan menu ponsel. */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: #536071;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.nav-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-dropdown > summary::after {
+  content: "⌄";
+  margin-left: 6px;
+  font-size: 11px;
+}
+
+.nav-dropdown[open] > summary::after {
+  content: "⌃";
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: -16px;
+  z-index: 60;
+  display: grid;
+  min-width: 180px;
+  padding: 8px;
+  border: 1px solid #e9edf1;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 14px 30px #12243b1c;
+}
+
+.nav-dropdown-menu a {
+  padding: 10px 12px;
+  border-radius: 5px;
+  color: #536071;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-dropdown-menu a:hover {
+  background: #f3f5f7;
+  color: var(--navy);
+}
+
+.nav-link:hover,
+/* Keterangan: Mengatur tampilan elemen .nav-link.active sesuai fungsi/posisinya pada halaman. */
+.nav-link.active {
+  color: var(--maroon);
+}
+
+/* Keterangan: Menyesuaikan tombol PMB agar nyaman disentuh pada ponsel. */
+.btn-pmb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #712e39;
+  color: var(--white);
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Keterangan: Efek warna dan gerakan tombol PMB ketika disentuh kursor. */
+.btn-pmb:hover {
+  background: #0b3b70;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Keterangan: Menampilkan tombol menu dan meletakkannya di sisi kanan pada ponsel. */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* Keterangan: Membentuk garis-garis ikon menu hamburger. */
+.menu-toggle span {
+  display: block;
+  width: 23px;
+  height: 2px;
+  background: var(--navy);
+  margin: 5px;
+}
+
+/* HERO */
+/* Keterangan: Mengurangi ruang atas dan bawah bagian hero pada ponsel. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(115deg, #142b4b 0%, #1b3659 57%, #ff005d 100%);
+  color: var(--white);
+  padding: 92px 0 85px;
+}
+
+/* Keterangan: Ornamen lingkaran dekoratif di bagian hero. */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border: 1px solid #ffffff12;
+  border-radius: 50%;
+  right: -160px;
+  top: -180px;
+  box-shadow: 0 0 0 55px #ffffff08, 0 0 0 110px #ffffff05;
+  pointer-events: none;
+}
+
+/* Keterangan: Pola dekoratif transparan sebagai latar tambahan hero. */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: linear-gradient(30deg, transparent 49.5%, #ffffff 50%, transparent 50.5%);
+  background-size: 70px 70px;
+  mask-image: linear-gradient(90deg, transparent, #000000);
+  pointer-events: none;
+}
+
+/* Keterangan: Mengubah kolom hero menjadi satu kolom pada ponsel. */
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Keterangan: Label kecil di atas judul bagian, biasanya berupa kategori atau identitas bagian. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #e8c77f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+/* Keterangan: Garis pendek dekoratif di samping label kecil. */
+.eyebrow-line {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+.hero h1,
+.section h2,
+.admission h2,
+/* Keterangan: Jarak judul pada bagian kontak. */
+.contact-section h2 {
+  font: 800 clamp(38px, 5vw, 61px) / 1.12 "Manrope", sans-serif;
+  letter-spacing: -0.045em;
+  margin: 23px 0;
+}
+
+.hero-neon-title {
+  color: #fff8df;
+  text-shadow: 0 0 5px #fff, 0 0 12px #f7d77c, 0 0 26px #e9a934;
+  animation: neon-pulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+  from {
+    text-shadow: 0 0 4px #fff, 0 0 10px #f7d77c, 0 0 20px #e9a934;
+  }
+  to {
+    text-shadow: 0 0 7px #fff, 0 0 17px #f7d77c, 0 0 34px #e9a934;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-neon-title {
+    animation: none;
+  }
+}
+
+h1 em,
+/* Keterangan: Mengatur gaya elemen h2 em pada website. */
+h2 em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* Keterangan: Lebar, ukuran, dan warna paragraf pengantar pada hero. */
+.hero-desc {
+  max-width: 560px;
+  color: #e6d4d4;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* Keterangan: Wadah tombol-tombol tindakan di bagian hero. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 32px;
+}
+
+/* Keterangan: Gaya dasar tombol atau tautan yang tampil seperti tombol. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.2s, background 0.2s;
+}
+
+/* Keterangan: Efek gerak tombol saat kursor diarahkan ke atasnya. */
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* Keterangan: Warna tombol utama dengan latar emas. */
+.button-gold {
+  background: var(--gold);
+  color: #26354a;
+}
+
+/* Keterangan: Tampilan tombol transparan dengan garis tepi. */
+.button-outline {
+  border: 1px solid #ffffff70;
+  color: var(--white);
+}
+
+/* Keterangan: Keterangan singkat di bawah tombol pada area hero. */
+.hero-caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 44px;
+  color: #b9c5d3;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* Keterangan: Simbol dekoratif pada keterangan hero. */
+.caption-mark {
+  color: var(--gold);
+  font-size: 19px;
+}
+
+/* VISUAL & SLIDER */
+/* Keterangan: Membatasi dan memusatkan area visual hero pada ponsel. */
+.hero-visual {
+  position: relative;
+  padding: 16px 12px 28px 24px;
+}
+
+/* Keterangan: Mengurangi tinggi minimum bingkai visual pada ponsel. */
+.visual-frame {
+  min-height: 410px;
+  position: relative;
+  border: 1px solid #ffffff65;
+  background: linear-gradient(145deg, #ffffff10, #ffffff03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.visual-frame::before,
+/* Keterangan: Mengatur tampilan elemen .visual-frame::after sesuai fungsi/posisinya pada halaman. */
+.visual-frame::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff24;
+  border-radius: 50%;
+  width: 310px;
+  height: 310px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Keterangan: Mengatur tampilan elemen .visual-frame::after sesuai fungsi/posisinya pada halaman. */
+.visual-frame::after {
+  width: 235px;
+  height: 235px;
+}
+
+.visual-topline,
+/* Keterangan: Mengatur tampilan elemen .visual-bottom sesuai fungsi/posisinya pada halaman. */
+.visual-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #d5dce5;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  position: relative;
+  z-index: 2;
+}
+
+.visual-bottom {
+  justify-content: center;
+  width: 100%;
+}
+
+/* Keterangan: Mengecilkan monogram dekoratif pada ponsel. */
+.visual-monogram {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ffffff13;
+  font: 800 170px "Manrope", sans-serif;
+  letter-spacing: -0.1em;
+  pointer-events: none;
+}
+
+/* Keterangan: Ukuran dan tampilan wadah slideshow foto pada hero. */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e9c47a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 22px #e9c47a55;
+  margin: 0 auto;
+  z-index: 2;
+  animation: slider-frame-glow 3s ease-in-out infinite alternate;
+}
+
+.hero-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 1px solid #ffffff90;
+  border-radius: inherit;
+  box-shadow: inset 0 0 28px #142b4b55;
+  pointer-events: none;
+}
+
+@keyframes slider-frame-glow {
+  from {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 16px #e9c47a40;
+  }
+  to {
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3), 0 0 30px #e9c47a80;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider {
+    animation: none;
+  }
+}
+
+/* Keterangan: Wadah seluruh gambar slideshow. */
 .hero-slider .slides {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
+/* Keterangan: Gaya setiap foto slide; foto ditumpuk dan disembunyikan sebelum aktif. */
 .hero-slider .slide {
   position: absolute;
   inset: 0;
@@ -280,32 +551,43 @@ h1 em,h2 em{font-style:normal;color:var(--gold)}
   transition: opacity 0.6s ease-in-out;
 }
 
+/* Keterangan: Menampilkan foto slide yang sedang aktif. */
 .hero-slider .slide.active {
   opacity: 1;
 }
 
+/* Keterangan: Tombol navigasi kiri/kanan pada slideshow. */
 .slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(15, 23, 42, 0.55);
-  color: #ffffff;
+  color: var(--white);
   border: none;
   width: 34px;
   height: 34px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
-  z-index: 2;
+  z-index: 3;
 }
 
+/* Keterangan: Warna tombol slideshow saat diarahkan kursor. */
 .slider-btn:hover {
   background: rgba(15, 23, 42, 0.85);
 }
 
-.slider-btn.prev { left: 10px; }
-.slider-btn.next { right: 10px; }
+/* Keterangan: Posisi tombol slide sebelumnya di sisi kiri. */
+.slider-btn.prev {
+  left: 10px;
+}
 
+/* Keterangan: Posisi tombol slide berikutnya di sisi kanan. */
+.slider-btn.next {
+  right: 10px;
+}
+
+/* Keterangan: Wadah indikator titik untuk memilih slide. */
 .slider-dots {
   position: absolute;
   bottom: 12px;
@@ -313,9 +595,10 @@ h1 em,h2 em{font-style:normal;color:var(--gold)}
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  z-index: 2;
+  z-index: 3;
 }
 
+/* Keterangan: Tampilan satu titik indikator slideshow. */
 .slider-dots .dot {
   width: 9px;
   height: 9px;
@@ -324,87 +607,1125 @@ h1 em,h2 em{font-style:normal;color:var(--gold)}
   cursor: pointer;
 }
 
+/* Keterangan: Tampilan titik indikator untuk slide yang sedang aktif. */
 .slider-dots .dot.active {
-  background: #ffffff;
+  background: var(--white);
 }
 
-/* ===== PENYEGARAN TAMPILAN MODERN STIT GLOBAL NUSANTARA ===== */
-:root{
-  --navy:#17365d;
-  --navy-2:#234b78;
-  --maroon:#7b2638;
-  --maroon-dark:#551827;
-  --gold:#e9c779;
-  --cream:#f5f7fa;
-  --ink:#1d2b3d;
-  --muted:#68778a;
+/* Keterangan: Kartu informasi kecil yang mengambang di atas area visual hero. */
+.floating-note {
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  z-index: 3;
+  background: var(--white);
+  color: var(--navy);
+  padding: 14px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 14px 35px #07182b30;
 }
-body{background:var(--cream)}
-.topbar{background:#102744;color:#fff}
-.topbar-inner{color:#fff}
-.site-header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px)}
-.brand-logo{width:54px;height:54px}
-.nav-link:hover,.nav-link.active{color:var(--maroon)}
-.btn-pmb{background:var(--maroon);border-radius:999px;padding:12px 18px}
-.btn-pmb:hover{background:var(--navy-2)}
-.hero{
-  background:linear-gradient(120deg,#102744 0%,#173d67 62%,#70263c 100%);
-  padding:76px 0 78px;
+
+/* Keterangan: Ukuran dan warna ikon pada kartu informasi mengambang. */
+.note-icon {
+  font-size: 25px;
+  color: var(--maroon);
 }
-.hero:after{border-color:#ffffff18}
-.hero h1{font-size:clamp(40px,5vw,62px);line-height:1.13}
-.hero h1 em{color:#f0cf83;font-size:.58em;letter-spacing:-.02em}
-.hero-desc{color:#e2eaf2}
-.hero-visual{min-width:0}
-.visual-frame{
-  height:auto;min-height:0;padding:15px;
-  border:1px solid #ffffff55;border-radius:22px;
-  background:linear-gradient(145deg,#ffffff18,#ffffff08);
-  box-shadow:0 24px 55px #07182b45;
-  gap:12px;
+
+/* Keterangan: Menyusun judul dan keterangan kartu informasi secara vertikal. */
+.floating-note span:last-child {
+  display: flex;
+  flex-direction: column;
 }
-.visual-frame:before,.visual-frame:after{display:none}
-.visual-topline{position:relative;z-index:3;gap:12px;line-height:1.4}
-.visual-topline span:last-child{text-align:right}
-.visual-monogram{display:none}
-.visual-bottom{display:block;position:relative;z-index:2}
-.hero-slider{
-  width:100%;max-width:none;aspect-ratio:16/10;
-  margin:0;border:0;border-radius:13px;
-  background:#0d2038;box-shadow:0 12px 28px #06172b55;
+
+/* Keterangan: Gaya judul pada kartu informasi mengambang. */
+.floating-note strong {
+  font: 700 11px "Manrope", sans-serif;
 }
-.hero-slider .slides{position:absolute;inset:0}
-.hero-slider .slide{
-  display:block;width:100%;height:100%;
-  object-fit:cover;object-position:center center;
+
+/* Keterangan: Gaya teks keterangan kecil pada kartu informasi. */
+.floating-note small {
+  font-size: 10px;
+  color: #788393;
 }
-.slider-btn{width:40px;height:40px;background:#102744b8;backdrop-filter:blur(5px)}
-.slider-btn:hover{background:var(--maroon)}
-.slider-dots .dot{width:9px;height:9px;border:1px solid #fff}
-.slider-dots .dot.active{background:var(--gold);transform:scale(1.2)}
-.floating-note{right:-12px;bottom:-20px;border-radius:12px;box-shadow:0 16px 40px #1027442b}
-.button-gold{background:var(--gold)}
-.section-light{background:#fff}
-.profile-panel{border-radius:18px;background:linear-gradient(145deg,#17365d,#234b78 68%,#7b2638)}
-.value-card,.program-card,.news-card{border-radius:14px;box-shadow:0 8px 24px #172b4508}
-.value-card-featured{background:linear-gradient(145deg,#17365d,#234b78)}
-.program-card:hover{border-color:#b88b96;box-shadow:0 18px 38px #152d4a14}
-.admission{background:linear-gradient(110deg,#102744,#173d67 60%,#70263c)}
-.news-art-one{background:linear-gradient(135deg,#173d67,#7b2638)}
-.news-art-two{background:linear-gradient(135deg,#7b2638,#b47b75)}
-.news-art-three{background:linear-gradient(135deg,#294d73,#102744)}
-.contact-section{background:#edf1f6}
-.site-footer{background:#102744}
-.back-to-top{background:var(--maroon);color:#fff}
-.whatsapp-float{border-radius:999px}
-@media(max-width:720px){
-  .hero{padding:56px 0 65px}
-  .hero h1{font-size:42px}
-  .hero-visual{padding:10px 8px 25px}
-  .visual-frame{padding:11px;border-radius:17px}
-  .visual-topline{font-size:8px}
-  .hero-slider{aspect-ratio:4/3;border-radius:10px}
-  .slider-btn{width:34px;height:34px}
-  .floating-note{right:-5px;bottom:-13px;padding:12px 14px}
-  .main-nav{border-radius:0 0 14px 14px}
+
+/* Keterangan: Garis aksen di bagian bawah hero. */
+.hero-bottom-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 42%;
+  height: 4px;
+  background: var(--gold);
+}
+
+/* QUICK INFO */
+/* Keterangan: Bagian informasi cepat tepat di bawah hero. */
+.quick-info {
+  background: var(--white);
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 12px 30px #172b450b;
+}
+
+/* Keterangan: Mengubah informasi cepat menjadi satu kolom pada ponsel. */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Keterangan: Mengatur garis dan padding item informasi cepat pada ponsel. */
+.quick-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 25px 22px;
+  text-decoration: none;
+  border-right: 1px solid #edf0f3;
+}
+
+/* Keterangan: Memberi garis pembatas tambahan pada item informasi pertama. */
+.quick-item:first-child {
+  border-left: 1px solid #edf0f3;
+}
+
+/* Keterangan: Gaya ikon atau simbol pada informasi cepat. */
+.quick-icon {
+  font: 800 17px "Manrope", sans-serif;
+  color: var(--maroon);
+}
+
+/* Keterangan: Menyusun judul dan keterangan item informasi cepat. */
+.quick-item span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keterangan: Gaya judul informasi cepat. */
+.quick-item strong {
+  font: 700 12px "Manrope", sans-serif;
+  color: var(--navy);
+}
+
+/* Keterangan: Gaya keterangan kecil informasi cepat. */
+.quick-item small {
+  font-size: 10px;
+  color: #8993a0;
+}
+
+/* Keterangan: Gaya tanda/ikon di ujung kanan item informasi cepat. */
+.quick-item b {
+  margin-left: auto;
+  color: var(--maroon);
+}
+
+/* SECTIONS */
+/* Keterangan: Mengurangi jarak vertikal setiap bagian pada ponsel. */
+.section {
+  padding: 100px 0;
+}
+
+/* Keterangan: Memberi latar putih pada bagian konten tertentu. */
+.section-light {
+  background: var(--white);
+}
+
+.profile-page-hero {
+  padding: 70px 0 58px;
+  color: var(--white);
+  background: linear-gradient(115deg, #142b4b, #1c3a61 65%, #65263f);
+}
+
+.profile-page-hero h1 {
+  margin: 14px 0 0;
+  font: 800 clamp(36px, 5vw, 54px) / 1.1 "Manrope", sans-serif;
+}
+
+.profile-detail-section {
+  min-height: 390px;
+}
+
+.profile-detail-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: clamp(26px, 5vw, 48px);
+  border: 1px solid #edf0f3;
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 16px 38px #142b4b0d;
+}
+
+.profile-detail-card h2 {
+  margin: 12px 0;
+  color: var(--navy);
+  font: 800 26px "Manrope", sans-serif;
+}
+
+.profile-detail-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.profile-detail-note {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: #f6f4f0;
+  color: #697586;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Keterangan: Membagi konten menjadi dua kolom dengan posisi vertikal rata tengah. */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* Keterangan: Warna label kecil pada bagian berlatar terang. */
+.eyebrow-dark {
+  color: var(--maroon);
+}
+
+.section h2,
+.admission h2,
+/* Keterangan: Jarak judul pada bagian kontak. */
+.contact-section h2 {
+  font-size: clamp(32px, 4vw, 47px);
+  color: var(--navy);
+}
+
+.section h2 em,
+/* Keterangan: Mengatur tampilan elemen .contact-section h2 em sesuai fungsi/posisinya pada halaman. */
+.contact-section h2 em {
+  color: var(--maroon);
+}
+
+/* Keterangan: Gaya paragraf pengantar utama pada bagian profil atau informasi. */
+.lead {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+  max-width: 490px;
+}
+
+/* Keterangan: Gaya tautan teks seperti 'selengkapnya' atau tautan detail. */
+.text-link {
+  display: inline-flex;
+  gap: 17px;
+  align-items: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: var(--maroon);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Keterangan: Mengurangi tinggi minimum panel profil pada ponsel. */
+.profile-panel {
+  min-height: 380px;
+  padding: 27px;
+  background: linear-gradient(145deg, #142b4b, #233f63 68%, #742b45);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Keterangan: Ornamen lingkaran dekoratif pada panel profil. */
+.profile-panel::after {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #ffffff24;
+  border-radius: 50%;
+  right: -100px;
+  top: 50px;
+  box-shadow: 0 0 0 35px #ffffff08, 0 0 0 70px #ffffff06;
+}
+
+.profile-panel-top,
+/* Keterangan: Membagi informasi bawah panel profil menjadi dua kolom. */
+.profile-panel-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keterangan: Susunan identitas kecil pada bagian atas panel profil. */
+.profile-panel-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: #d5dce5;
+}
+
+/* Keterangan: Simbol bintang dekoratif pada panel profil. */
+.panel-star {
+  color: var(--gold);
+  font-size: 23px;
+}
+
+/* Keterangan: Monogram atau singkatan kampus berukuran besar di panel profil. */
+.profile-emblem {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: #ffffff18;
+  font: 800 82px / 0.95 "Manrope", sans-serif;
+  letter-spacing: -0.08em;
+}
+
+/* Keterangan: Keterangan kecil di bawah monogram panel profil. */
+.profile-emblem small {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: #e5c783;
+}
+
+/* Keterangan: Membagi informasi bawah panel profil menjadi dua kolom. */
+.profile-panel-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid #ffffff3b;
+  padding-top: 20px;
+}
+
+/* Keterangan: Menyusun label dan nilai informasi panel profil secara vertikal. */
+.profile-panel-bottom div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Keterangan: Gaya label kecil informasi panel profil. */
+.profile-panel-bottom small {
+  font-size: 9px;
+  color: #d3c18e;
+  letter-spacing: 0.14em;
+}
+
+/* Keterangan: Gaya teks utama informasi panel profil. */
+.profile-panel-bottom strong {
+  font: 600 11px "Manrope", sans-serif;
+}
+
+/* VALUES */
+/* Keterangan: Latar untuk bagian nilai, keunggulan, atau prinsip kampus. */
+.values-section {
+  background: var(--cream);
+}
+
+/* Keterangan: Membuat judul dan pengantar bagian berada di tengah. */
+.center-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 48px;
+}
+
+/* Keterangan: Memusatkan label kecil di atas judul bagian. */
+.center-heading .eyebrow {
+  justify-content: center;
+}
+
+/* Keterangan: Jarak judul pada bagian yang rata tengah. */
+.center-heading h2 {
+  margin: 16px 0;
+}
+
+.center-heading p,
+/* Keterangan: Memberi jarak paragraf pengantar dari judul pada ponsel. */
+.section-title-row > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Keterangan: Menyusun kartu nilai/keunggulan menjadi tiga kolom. */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Keterangan: Mengurangi tinggi minimum kartu nilai pada ponsel. */
+.value-card {
+  background: var(--white);
+  padding: 29px;
+  min-height: 235px;
+  position: relative;
+  border: 1px solid #ece9e4;
+}
+
+/* Keterangan: Varian kartu nilai yang ditonjolkan dengan latar biru. */
+.value-card-featured {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Keterangan: Gaya nomor urut pada kartu nilai. */
+.value-number {
+  font: 700 10px "Manrope", sans-serif;
+  color: #9aa3ad;
+  letter-spacing: 0.1em;
+}
+
+/* Keterangan: Warna nomor urut pada kartu yang ditonjolkan. */
+.value-card-featured .value-number {
+  color: #c3cbd4;
+}
+
+/* Keterangan: Ukuran dan warna simbol pada kartu nilai. */
+.value-symbol {
+  font-size: 30px;
+  color: var(--maroon);
+  margin: 20px 0 8px;
+}
+
+/* Keterangan: Warna simbol pada kartu nilai yang ditonjolkan. */
+.value-card-featured .value-symbol {
+  color: var(--gold);
+}
+
+/* Keterangan: Gaya judul pada kartu nilai. */
+.value-card h3 {
+  font: 700 18px "Manrope", sans-serif;
+  margin: 5px 0 9px;
+  color: var(--navy);
+}
+
+/* Keterangan: Warna judul pada kartu nilai yang ditonjolkan. */
+.value-card-featured h3 {
+  color: var(--white);
+}
+
+/* Keterangan: Gaya deskripsi pada kartu nilai. */
+.value-card p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Keterangan: Warna deskripsi pada kartu nilai yang ditonjolkan. */
+.value-card-featured p {
+  color: #cbd4df;
+}
+
+/* PROGRAMS */
+/* Keterangan: Menumpuk judul dan pengantar bagian secara vertikal pada ponsel. */
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 38px;
+}
+
+/* Keterangan: Jarak judul di dalam baris judul bagian. */
+.section-title-row h2 {
+  margin: 14px 0 0;
+}
+
+/* Keterangan: Memberi jarak paragraf pengantar dari judul pada ponsel. */
+.section-title-row > p {
+  max-width: 300px;
+  margin: 0 0 7px;
+}
+
+/* Keterangan: Menyusun kartu program studi dalam tiga kolom. */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Keterangan: Tampilan dasar satu kartu program studi. */
+.program-card {
+  border: 1px solid #e9edf1;
+  padding: 27px;
+  min-height: 285px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: 0.2s;
+}
+
+/* Keterangan: Efek garis, bayangan, dan gerak saat kartu program studi diarahkan kursor. */
+.program-card:hover {
+  border-color: #c7a7b3;
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px #152d4a0b;
+}
+
+/* Keterangan: Label nomor atau urutan program studi. */
+.program-index {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  color: #8a94a1;
+  font-weight: 700;
+}
+
+/* Keterangan: Ukuran dan warna ikon program studi. */
+.program-icon {
+  font-size: 28px;
+  color: var(--maroon);
+  margin: 22px 0 10px;
+}
+
+/* Keterangan: Gaya nama/judul program studi. */
+.program-card h3 {
+  font: 700 17px "Manrope", sans-serif;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+
+/* Keterangan: Gaya deskripsi masing-masing program studi. */
+.program-card p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 0 15px;
+}
+
+/* Keterangan: Menempatkan tautan detail di bagian bawah kartu program studi. */
+.program-card .text-link {
+  margin-top: auto;
+}
+
+/* PMB BANNER */
+/* Keterangan: Banner khusus informasi penerimaan mahasiswa baru (PMB). */
+.admission {
+  background: linear-gradient(110deg, #142b4b, #1c3a61 60%, #65263f);
+  color: var(--white);
+  padding: 75px 0;
+}
+
+/* Keterangan: Menumpuk isi banner PMB secara vertikal pada ponsel. */
+.admission-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Keterangan: Menyesuaikan ukuran judul banner PMB pada ponsel. */
+.admission h2 {
+  color: var(--white);
+  margin: 18px 0;
+}
+
+/* Keterangan: Gaya paragraf informasi PMB. */
+.admission p {
+  color: #cbd5e0;
+  font-size: 13px;
+  max-width: 590px;
+  line-height: 1.8;
+}
+
+/* Keterangan: Memberi jarak tombol PMB dari teks pada ponsel. */
+.admission-action {
+  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* Keterangan: Gaya catatan kecil di bawah tombol PMB. */
+.admission-action small {
+  font-size: 10px;
+  color: #c3cbd4;
+  line-height: 1.6;
+}
+
+/* NEWS */
+/* Keterangan: Menyusun kartu berita atau informasi kampus menjadi tiga kolom. */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Keterangan: Bingkai satu kartu berita kampus. */
+.news-card {
+  border: 1px solid #edf0f3;
+  background: var(--white);
+}
+
+/* Keterangan: Area gambar/ilustrasi bagian atas kartu berita. */
+.news-art {
+  height: 165px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-art::before,
+/* Keterangan: Lingkaran dekoratif bagian dalam pada ilustrasi berita. */
+.news-art::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff45;
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+}
+
+/* Keterangan: Lingkaran dekoratif bagian dalam pada ilustrasi berita. */
+.news-art::after {
+  width: 130px;
+  height: 130px;
+}
+
+/* Keterangan: Teks atau singkatan yang ditampilkan di tengah ilustrasi berita. */
+.news-art span {
+  position: relative;
+  z-index: 1;
+  font: 800 30px "Manrope", sans-serif;
+  color: #ffffffc9;
+  letter-spacing: 0.1em;
+}
+
+/* Keterangan: Warna latar ilustrasi untuk kartu berita pertama. */
+.news-art-one {
+  background: linear-gradient(135deg, #18395f, #702b46);
+}
+
+/* Keterangan: Warna latar ilustrasi untuk kartu berita kedua. */
+.news-art-two {
+  background: linear-gradient(135deg, #6f2a44, #a66c64);
+}
+
+/* Keterangan: Warna latar ilustrasi untuk kartu berita ketiga. */
+.news-art-three {
+  background: linear-gradient(135deg, #263d5a, #172b48);
+}
+
+/* Keterangan: Area isi kartu berita: tanggal/kategori, judul, dan ringkasan. */
+.news-body {
+  padding: 22px;
+}
+
+/* Keterangan: Gaya tanggal atau kategori berita. */
+.news-body small {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+/* Keterangan: Gaya judul berita kampus. */
+.news-body h3 {
+  font: 700 15px / 1.5 "Manrope", sans-serif;
+  color: var(--navy);
+  margin: 9px 0;
+}
+
+/* Keterangan: Gaya ringkasan atau isi singkat berita. */
+.news-body p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* CONTACT & FOOTER */
+/* Keterangan: Bagian kontak kampus beserta warna latarnya. */
+.contact-section {
+  background: #f1eee9;
+  padding: 85px 0;
+}
+
+/* Keterangan: Membagi informasi pengantar dan rincian kontak menjadi dua kolom. */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+/* Keterangan: Jarak judul pada bagian kontak. */
+.contact-section h2 {
+  margin: 18px 0;
+}
+
+/* Keterangan: Gaya paragraf pengantar kontak. */
+.contact-section p {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 440px;
+  line-height: 1.9;
+}
+
+/* Keterangan: Garis pembatas atas pada daftar rincian kontak. */
+.contact-details {
+  border-top: 1px solid #d9d5cf;
+}
+
+/* Keterangan: Tampilan satu baris informasi kontak, seperti alamat, telepon, atau email. */
+.contact-row {
+  padding: 17px 0;
+  border-bottom: 1px solid #d9d5cf;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Keterangan: Gaya label jenis informasi kontak. */
+.contact-row small {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+/* Keterangan: Gaya isi utama informasi kontak. */
+.contact-row strong {
+  font: 600 12px "Manrope", sans-serif;
+  color: var(--navy);
+}
+
+/* Keterangan: Footer atau bagian paling bawah website. */
+.site-footer {
+  background: #0e2039;
+  color: var(--white);
+  padding: 38px 0 18px;
+}
+
+/* Keterangan: Menyusun identitas kampus dan tautan footer. */
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding-bottom: 28px;
+}
+
+/* Keterangan: Gaya nama kampus di footer. */
+.footer-brand strong {
+  font: 800 14px "Manrope", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* Keterangan: Gaya deskripsi singkat kampus di footer. */
+.footer-brand p {
+  font-size: 11px;
+  color: #aeb9c7;
+  margin: 5px 0;
+}
+
+/* Keterangan: Mengizinkan tautan footer turun ke baris berikutnya jika ruang sempit. */
+.footer-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+/* Keterangan: Gaya masing-masing tautan footer. */
+.footer-links a {
+  font-size: 11px;
+  text-decoration: none;
+  color: #c5ced8;
+}
+
+.footer-brochure-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid #e9c47a80;
+  border-radius: 5px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.footer-brochure-link:hover {
+  background: var(--gold);
+  color: #142b4b;
+}
+
+/* Keterangan: Baris paling bawah footer untuk hak cipta atau keterangan tambahan. */
+.footer-bottom {
+  border-top: 1px solid #ffffff20;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  color: #8f9eaf;
+  font-size: 10px;
+}
+
+/* FLOATING BUTTONS (TIDAK SALING TUMPANG TINDIH) */
+/* Keterangan: Menggeser tombol kembali ke atas agar sesuai dengan layar ponsel. */
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 88px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  z-index: 45;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Keterangan: Menampilkan tombol kembali ke atas ketika statusnya aktif. */
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Keterangan: Menyesuaikan posisi dan ukuran tombol WhatsApp pada ponsel. */
+.whatsapp-float {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25d366;
+  color: var(--white);
+  padding: 13px 21px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Keterangan: Menyesuaikan ukuran ikon WhatsApp pada ponsel. */
+.whatsapp-float svg {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+/* Keterangan: Efek warna dan gerak tombol WhatsApp saat diarahkan kursor. */
+.whatsapp-float:hover {
+  background-color: #128c7e;
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* RESPONSIVE */
+/* Keterangan: Aturan responsif untuk layar tablet atau jendela dengan lebar maksimal 900 piksel. */
+@media (max-width: 900px) {
+/* Keterangan: Mengubah navigasi menjadi menu dropdown vertikal pada ponsel. */
+  .main-nav {
+    gap: 14px;
+  }
+
+/* Keterangan: Memberi ruang sentuh dan garis pemisah pada tautan menu ponsel. */
+  .nav-link {
+    font-size: 11px;
+  }
+
+/* Keterangan: Mengubah kolom hero menjadi satu kolom pada ponsel. */
+  .hero-grid {
+    gap: 35px;
+  }
+
+  .two-col,
+/* Keterangan: Membagi informasi pengantar dan rincian kontak menjadi dua kolom. */
+  .contact-grid {
+    gap: 45px;
+  }
+}
+
+/* Keterangan: Aturan responsif untuk ponsel dengan lebar maksimal 720 piksel. */
+@media (max-width: 720px) {
+/* Keterangan: Menyesuaikan lebar pembungkus konten agar pas pada layar ponsel. */
+  .container {
+    width: min(100% - 34px, 560px);
+  }
+
+/* Keterangan: Menyembunyikan teks tambahan topbar agar tampilan ponsel lebih ringkas. */
+  .topbar-note {
+    display: none;
+  }
+
+/* Keterangan: Menyesuaikan tinggi area header pada layar ponsel. */
+  .nav-wrap {
+    min-height: 72px;
+  }
+
+/* Keterangan: Mengizinkan area logo dan nama kampus menggunakan lebar yang tersedia. */
+  .brand {
+    min-width: 0;
+  }
+
+/* Keterangan: Mengecilkan nama kampus agar muat pada header ponsel. */
+  .brand-copy strong {
+    font-size: 11px;
+  }
+
+/* Keterangan: Menampilkan tombol menu dan meletakkannya di sisi kanan pada ponsel. */
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+/* Keterangan: Mengubah navigasi menjadi menu dropdown vertikal pada ponsel. */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 18px 25px 23px;
+    box-shadow: 0 15px 20px #10233a16;
+    align-items: stretch;
+    gap: 0;
+    flex-direction: column;
+  }
+
+/* Keterangan: Menampilkan menu dropdown ketika kelas 'open' ditambahkan oleh JavaScript. */
+  .main-nav.open {
+    display: flex;
+  }
+
+/* Keterangan: Memberi ruang sentuh dan garis pemisah pada tautan menu ponsel. */
+  .nav-link {
+    padding: 12px 0;
+    border-bottom: 1px solid #eef0f3;
+    font-size: 12px;
+  }
+
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    padding: 0 0 8px 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nav-dropdown-menu a {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eef0f3;
+  }
+
+/* Keterangan: Menyesuaikan tombol PMB agar nyaman disentuh pada ponsel. */
+  .btn-pmb {
+    margin-top: 14px;
+    padding: 13px 18px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+/* Keterangan: Mengurangi ruang atas dan bawah bagian hero pada ponsel. */
+  .hero {
+    padding: 65px 0 65px;
+  }
+
+/* Keterangan: Mengubah kolom hero menjadi satu kolom pada ponsel. */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+/* Keterangan: Menyesuaikan ukuran judul utama hero pada ponsel. */
+  .hero h1 {
+    font-size: 42px;
+  }
+
+/* Keterangan: Membatasi dan memusatkan area visual hero pada ponsel. */
+  .hero-visual {
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px 0 28px 0;
+  }
+
+/* Keterangan: Mengurangi tinggi minimum bingkai visual pada ponsel. */
+  .visual-frame {
+    min-height: 310px;
+  }
+
+/* Keterangan: Mengecilkan monogram dekoratif pada ponsel. */
+  .visual-monogram {
+    font-size: 125px;
+  }
+
+/* Keterangan: Mengubah informasi cepat menjadi satu kolom pada ponsel. */
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* Keterangan: Mengatur garis dan padding item informasi cepat pada ponsel. */
+  .quick-item {
+    border-left: 1px solid #edf0f3;
+    border-bottom: 1px solid #edf0f3;
+    padding: 17px 10px;
+  }
+
+/* Keterangan: Mengurangi jarak vertikal setiap bagian pada ponsel. */
+  .section {
+    padding: 70px 0;
+  }
+
+  .two-col,
+/* Keterangan: Membagi informasi pengantar dan rincian kontak menjadi dua kolom. */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+/* Keterangan: Mengurangi tinggi minimum panel profil pada ponsel. */
+  .profile-panel {
+    min-height: 310px;
+  }
+
+  .value-grid,
+  .program-grid,
+/* Keterangan: Menyusun kartu berita atau informasi kampus menjadi tiga kolom. */
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* Keterangan: Mengurangi tinggi minimum kartu nilai pada ponsel. */
+  .value-card {
+    min-height: 190px;
+  }
+
+/* Keterangan: Menumpuk judul dan pengantar bagian secara vertikal pada ponsel. */
+  .section-title-row {
+    display: block;
+  }
+
+/* Keterangan: Memberi jarak paragraf pengantar dari judul pada ponsel. */
+  .section-title-row > p {
+    margin-top: 14px;
+  }
+
+/* Keterangan: Menumpuk isi banner PMB secara vertikal pada ponsel. */
+  .admission-inner {
+    display: block;
+  }
+
+/* Keterangan: Memberi jarak tombol PMB dari teks pada ponsel. */
+  .admission-action {
+    margin-top: 25px;
+  }
+
+/* Keterangan: Menyesuaikan ukuran judul banner PMB pada ponsel. */
+  .admission h2 {
+    font-size: 35px;
+  }
+
+  .footer-main,
+/* Keterangan: Baris paling bawah footer untuk hak cipta atau keterangan tambahan. */
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+/* Keterangan: Mengizinkan tautan footer turun ke baris berikutnya jika ruang sempit. */
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+/* Keterangan: Menggeser tombol kembali ke atas agar sesuai dengan layar ponsel. */
+  .back-to-top {
+    right: 15px;
+    bottom: 74px;
+  }
+
+/* Keterangan: Menyesuaikan posisi dan ukuran tombol WhatsApp pada ponsel. */
+  .whatsapp-float {
+    right: 15px;
+    bottom: 15px;
+    padding: 12px 17px;
+    font-size: 13px;
+  }
+
+/* Keterangan: Menyesuaikan ukuran ikon WhatsApp pada ponsel. */
+  .whatsapp-float svg {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+/* POIN 8 - WARNA KARTU PROGRAM STUDI */
+
+/* Pengaturan dasar kartu program studi */
+#akademik .program-card {
+    border-radius: 14px;
+    padding: 24px;
+    color: #ffffff;
+    transition: 0.3s ease;
+    border: none;
+}
+
+/* Warna kartu PAI */
+#akademik .program-card:nth-child(1) {
+    background: linear-gradient(135deg, #142b4b, #245b91);
+}
+
+/* Warna kartu PGMI */
+#akademik .program-card:nth-child(2) {
+    background: linear-gradient(135deg, #70243e, #a33b5b);
+}
+
+/* Warna kartu PIAUD */
+#akademik .program-card:nth-child(3) {
+    background: linear-gradient(135deg, #b88632, #e9c47a);
+}
+
+/* Warna kartu informasi akademik */
+#akademik .program-card:nth-child(4) {
+    background: linear-gradient(135deg, #0ab84d, #28708a);
+}
+
+/* Warna teks pada tiga kartu program studi */
+#akademik .program-card:nth-child(-n + 3) h3,
+#akademik .program-card:nth-child(-n + 3) .program-index,
+#akademik .program-card:nth-child(-n + 3) .program-icon,
+#akademik .program-card:nth-child(-n + 3) p,
+#akademik .program-card:nth-child(-n + 3) .program-note {
+    color: #ffffff;
+}
+
+#akademik .program-card:nth-child(-n + 3) h3 {
+    font-weight: bold;
+}
+
+#akademik .program-card:nth-child(4) h3,
+#akademik .program-card:nth-child(4) .program-index,
+#akademik .program-card:nth-child(4) .program-icon,
+#akademik .program-card:nth-child(4) p,
+#akademik .program-card:nth-child(4) .text-link {
+    color: #ffffff;
+}
+
+/* Efek saat kursor diarahkan ke kartu */
+#akademik .program-card:nth-child(-n + 3):hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }

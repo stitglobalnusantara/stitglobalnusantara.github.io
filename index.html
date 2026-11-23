@@ -48,7 +48,14 @@
       </button>
       <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
         <a class="nav-link active" href="#beranda">Beranda</a>
-        <a class="nav-link" href="#profil">Profil</a>
+        <details class="nav-dropdown">
+          <summary class="nav-link" data-section="#profil">Profil</summary>
+          <div class="nav-dropdown-menu">
+            <a href="sambutan.html">Sambutan</a>
+            <a href="visi-misi.html">Visi Misi</a>
+            <a href="sejarah.html">Sejarah</a>
+          </div>
+        </details>
         <a class="nav-link" href="#akademik">Akademik</a>
         <a class="nav-link" href="#berita">Berita</a>
         <a class="nav-link" href="#Alumni">Alumni</a>
@@ -70,11 +77,12 @@
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="eyebrow"><span class="eyebrow-line"></span> SELAMAT DATANG DI KAMPUS BERSAHABAT</div>
-          <h1>STIT<br>Global Nusantara<br><em>Mencetak Generasi Unggul</em></h1>
+          <h1><span class="hero-neon-title">STIT</span><br>Global Nusantara<br><em>Mencetak Generasi Unggul</em></h1>
           <p class="hero-desc">STIT Global Nusantara hadir sebagai lingkungan pendidikan tinggi yang mendorong pengembangan ilmu pengetahuan, karakter, dan kontribusi nyata bagi masyarakat.</p>
           <div class="hero-actions">
             <a class="button button-gold" href="#pmb">Informasi Pendaftaran <span>→</span></a>
             <a class="button button-outline" href="#profil">Jelajahi Kampus</a>
+            <a class="button button-outline brochure-download-link" href="brosur-stit-global-nusantara.pdf" download><span aria-hidden="true">↓</span> Unduh Brosur PDF</a>
           </div>
           <div class="hero-caption">
             <span class="caption-mark">✦</span>
@@ -104,7 +112,6 @@
     <span class="dot" onclick="pilihSlide(2)"></span>
   </div>
 </div>
-              <span class="visual-circle">✦</span>
             </div>
           </div>
           <div class="floating-note"><span class="note-icon">✧</span><span><strong>Ruang untuk Bertumbuh</strong><small>Belajar • Berkarya • Mengabdi</small></span></div>
@@ -180,7 +187,7 @@
           <div class="program-index">PROGRAM STUDI 03</div>
           <div class="program-icon">✧</div>
           <h3>PIAUD (Pendidikan Islam Anak Usia Dini) S1</h3>
-          <P>enjadi guru kelas atau guru mata pelajaran di tingkat kober</P>
+          <p>Menjadi pendidik profesional di lembaga PAUD, TK, RA, dan sederajat.</p>
            <span class="program-note">Ganti dengan data resmi kampus</span>
           </article>
           <article class="program-card">
@@ -239,6 +246,7 @@
     <div class="container footer-main">
       <div class="footer-brand"><strong>STIT GLOBAL NUSANTARA</strong><p>Sekolah Tinggi Ilmu Tarbiyah</p></div>
       <div class="footer-links"><a href="#profil">Profil</a><a href="#akademik">Akademik</a><a href="#berita">Berita</a><a href="#pmb">PMB</a></div>
+      <a class="footer-brochure-link" href="brosur-stit-global-nusantara.pdf" download>↓ Unduh Brosur PDF</a>
     </div>
     <div class="container footer-bottom"><span>© <span id="year"></span> STIT Global Nusantara. Hak cipta dilindungi.</span><span>Website resmi institusi</span></div>
   </footer>
